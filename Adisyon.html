@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kafe Adisyon</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 10px;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 6px;
+    text-align: center;
+    border: 1px solid #555;
+}
+
+input {
+    width: 80px;
+    text-align: center;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #666;
+}
+
+button {
+    font-size: 18px;
+    padding: 6px 12px;
+    background-color: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+.total {
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.reset-btn {
+    margin-top: 10px;
+    font-size: 18px;
+    padding: 8px 16px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Adisyon Hesap</h2>
+
+<table>
+<tr>
+<th>Ürün</th>
+<th>Fiyat</th>
+<th>-</th>
+<th>Adet</th>
+<th>+</th>
+</tr>
+
+<tr>
+<td><input id="name1" value="Çay" onchange="saveData()"></td>
+<td><input type="number" value="15" id="price1" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(1)">-</button></td>
+<td><input type="number" value="0" id="qty1" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(1)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name2" value="Su" onchange="saveData()"></td>
+<td><input type="number" value="15" id="price2" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(2)">-</button></td>
+<td><input type="number" value="0" id="qty2" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(2)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name5" value="Kahve" onchange="saveData()"></td>
+<td><input type="number" value="15" id="price5" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(5)">-</button></td>
+<td><input type="number" value="0" id="qty5" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(5)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name3" value="Soda" onchange="saveData()"></td>
+<td><input type="number" value="15" id="price3" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(3)">-</button></td>
+<td><input type="number" value="0" id="qty3" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(3)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name4" value="Ayran" onchange="saveData()"></td>
+<td><input type="number" value="30" id="price4" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(4)">-</button></td>
+<td><input type="number" value="0" id="qty4" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(4)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name6" value="Meyve Suyu" onchange="saveData()"></td>
+<td><input type="number" value="50" id="price6" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(6)">-</button></td>
+<td><input type="number" value="0" id="qty6" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(6)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name7" value="Kola" onchange="saveData()"></td>
+<td><input type="number" value="50" id="price7" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(7)">-</button></td>
+<td><input type="number" value="0" id="qty7" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(7)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name8" value="SodaAyran" onchange="saveData()"></td>
+<td><input type="number" value="50" id="price8" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(8)">-</button></td>
+<td><input type="number" value="0" id="qty8" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(8)">+</button></td>
+</tr>
+
+<tr>
+<td><input id="name14" value="Diğer" onchange="saveData()"></td>
+<td><input type="number" value="50" id="price14" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(14)">-</button></td>
+<td><input type="number" value="0" id="qty14" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(14)">+</button></td>
+</tr>
+
+
+
+</table>
+
+<div class="total">
+TOPLAM: <span id="total">0</span> TL
+</div>
+
+<button class="reset-btn" onclick="resetAll()">SIFIRLA</button>
+
+<script>
+
+function plus(i){
+    let qty = document.getElementById("qty" + i);
+    qty.value = parseInt(qty.value || 0) + 1;
+    calculate();
+    saveData();
+}
+
+function minus(i){
+    let qty = document.getElementById("qty" + i);
+    if(parseInt(qty.value || 0) > 0){
+        qty.value = parseInt(qty.value || 0) - 1;
+        calculate();
+        saveData();
+    }
+}
+
+function calculate(){
+    let total = 0;
+
+    for(let i=1;i<=20;i++){
+        let priceEl = document.getElementById("price" + i);
+        let qtyEl = document.getElementById("qty" + i);
+
+        let price = Number(priceEl?.value) || 0;
+        let qty = Number(qtyEl?.value) || 0;
+
+        total += price * qty;
+    }
+
+    document.getElementById("total").innerText = total;
+}
+
+function saveData(){
+    let data = {};
+    for(let i=1;i<=20;i++){
+        data["name"+i] = document.getElementById("name"+i).value;
+        data["price"+i] = document.getElementById("price"+i).value;
+        data["qty"+i] = document.getElementById("qty"+i).value;
+    }
+    localStorage.setItem("kafeAdisyonData", JSON.stringify(data));
+}
+
+function loadData(){
+    let data = localStorage.getItem("kafeAdisyonData");
+    if(data){
+        data = JSON.parse(data);
+        for(let i=1;i<=20;i++){
+            if(document.getElementById("name"+i))
+                document.getElementById("name"+i).value = data["name"+i] || "";
+
+            if(document.getElementById("price"+i))
+                document.getElementById("price"+i).value = data["price"+i] || 0;
+
+            if(document.getElementById("qty"+i))
+                document.getElementById("qty"+i).value = data["qty"+i] || 0;
+        }
+    }
+    calculate();
+}
+
+function resetAll(){
+    if(confirm("Tüm adetler sıfırlansın mı?")){
+        for(let i=1;i<=20;i++){
+            let qtyEl = document.getElementById("qty"+i);
+            if(qtyEl){
+                qtyEl.value = 0;
+            }
+        }
+
+        // toplamı kesin güncelle
+        calculate();
+
+        // kaydı da temizle
+        saveData();
+    }
+}
+
+window.onload = loadData;
+
+</script>
+
+</body>
+</html>
