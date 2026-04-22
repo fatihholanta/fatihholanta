@@ -14,18 +14,18 @@ body {
 }
 
 table {
-    width: 100%;
+    width: 95%;
     border-collapse: collapse;
 }
 
 td, th {
-    padding: 6px;
+    padding: 2px;
     text-align: center;
     border: 1px solid #555;
 }
 
 input {
-    width: 80px;
+    width: 67px;
     text-align: center;
     font-size: 16px;
     background-color: #333;
@@ -46,9 +46,9 @@ button:hover {
 }
 
 .total {
-    font-size: 24px;
-    font-weight: bold;
-    padding-top: 10px;
+	font-size: 24px;
+	font-weight: bold;
+	padding-top: 8px;
 }
 
 .reset-btn {
@@ -62,7 +62,7 @@ button:hover {
 
 <body>
 
-<h2>Adisyon Hesap</h2>
+<h3 align="center">Adisyon Hesap</h3>
 
 <table>
 <tr>
@@ -90,23 +90,23 @@ button:hover {
 </tr>
 
 <tr>
-<td><input id="name5" value="Kahve" onchange="saveData()"></td>
-<td><input type="number" value="15" id="price5" onchange="calculate(); saveData();"></td>
+<td><input id="name5" value="Soda" onchange="saveData()"></td>
+<td><input type="number" value="20" id="price5" onchange="calculate(); saveData();"></td>
 <td><button onclick="minus(5)">-</button></td>
 <td><input type="number" value="0" id="qty5" onchange="calculate(); saveData();"></td>
 <td><button onclick="plus(5)">+</button></td>
 </tr>
 
 <tr>
-<td><input id="name3" value="Soda" onchange="saveData()"></td>
-<td><input type="number" value="15" id="price3" onchange="calculate(); saveData();"></td>
+<td><input id="name3" value="Ayran" onchange="saveData()"></td>
+<td><input type="number" value="20" id="price3" onchange="calculate(); saveData();"></td>
 <td><button onclick="minus(3)">-</button></td>
 <td><input type="number" value="0" id="qty3" onchange="calculate(); saveData();"></td>
 <td><button onclick="plus(3)">+</button></td>
 </tr>
 
 <tr>
-<td><input id="name4" value="Ayran" onchange="saveData()"></td>
+<td><input id="name4" value="M.Soda" onchange="saveData()"></td>
 <td><input type="number" value="30" id="price4" onchange="calculate(); saveData();"></td>
 <td><button onclick="minus(4)">-</button></td>
 <td><input type="number" value="0" id="qty4" onchange="calculate(); saveData();"></td>
@@ -114,7 +114,7 @@ button:hover {
 </tr>
 
 <tr>
-<td><input id="name6" value="Meyve Suyu" onchange="saveData()"></td>
+<td><input id="name6" value="S.Gazoz" onchange="saveData()"></td>
 <td><input type="number" value="50" id="price6" onchange="calculate(); saveData();"></td>
 <td><button onclick="minus(6)">-</button></td>
 <td><input type="number" value="0" id="qty6" onchange="calculate(); saveData();"></td>
@@ -130,7 +130,7 @@ button:hover {
 </tr>
 
 <tr>
-<td><input id="name8" value="SodaAyran" onchange="saveData()"></td>
+<td><input id="name8" value="M.Gazoz" onchange="saveData()"></td>
 <td><input type="number" value="50" id="price8" onchange="calculate(); saveData();"></td>
 <td><button onclick="minus(8)">-</button></td>
 <td><input type="number" value="0" id="qty8" onchange="calculate(); saveData();"></td>
@@ -138,13 +138,19 @@ button:hover {
 </tr>
 
 <tr>
-<td><input id="name14" value="Diğer" onchange="saveData()"></td>
-<td><input type="number" value="50" id="price14" onchange="calculate(); saveData();"></td>
+<td><input id="name14" value="T.Kahve" onchange="saveData()"></td>
+<td><input type="number" value="60" id="price14" onchange="calculate(); saveData();"></td>
 <td><button onclick="minus(14)">-</button></td>
 <td><input type="number" value="0" id="qty14" onchange="calculate(); saveData();"></td>
 <td><button onclick="plus(14)">+</button></td>
 </tr>
-
+<tr>
+<td><input id="name14" value="Tost" onchange="saveData()"></td>
+<td><input type="number" value="120" id="price14" onchange="calculate(); saveData();"></td>
+<td><button onclick="minus(14)">-</button></td>
+<td><input type="number" value="0" id="qty14" onchange="calculate(); saveData();"></td>
+<td><button onclick="plus(14)">+</button></td>
+</tr>
 
 
 </table>
